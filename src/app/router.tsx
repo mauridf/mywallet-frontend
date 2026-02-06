@@ -6,6 +6,7 @@ import { ProtectedRoute } from "../components/auth/ProtectedRoute";
 import LoginPage from "../modules/auth/pages/LoginPage";
 import RegisterPage from "../modules/auth/pages/RegisterPage";
 import DashboardPage from "../modules/dashboard/pages/DashboardPage";
+import AccountsPage from "../modules/accounts/pages/AccountsPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +23,13 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { path: "/", element: <DashboardPage /> },
+      { 
+        path: "/", 
+        element: <DashboardPage /> },
+      {
+        path: "/accounts",
+        element: <AccountsPage />,
+      },
     ],
   },
 ]);
