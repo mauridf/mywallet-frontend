@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "../services/auth.service";
 import { useAuthStore } from "../store";
+import axios from "axios";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -21,8 +22,16 @@ export default function LoginPage() {
 
       setAuth(res.token, res.expiresAt);
       navigate("/");
-    } catch (err: any) {
-      setError("Credenciais inválidas");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 401) {
+          setError("Email ou senha inválidos");
+        } else {
+          setError("Erro de comunicação com a API");
+        }
+      } else {
+        setError("Erro inesperado");
+      }
     } finally {
       setLoading(false);
     }
