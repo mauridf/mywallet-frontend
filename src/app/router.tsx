@@ -7,6 +7,8 @@ import LoginPage from "../modules/auth/pages/LoginPage";
 import RegisterPage from "../modules/auth/pages/RegisterPage";
 import DashboardPage from "../modules/dashboard/pages/DashboardPage";
 import AccountsPage from "../modules/accounts/pages/AccountsPage";
+import TransactionsPage from "../modules/transactions/pages/TransactionsPage";
+
 
 export const router = createBrowserRouter([
   {
@@ -25,10 +27,15 @@ export const router = createBrowserRouter([
     children: [
       { 
         path: "/", 
-        element: <DashboardPage /> },
+        element: <DashboardPage /> 
+      },
       {
         path: "/accounts",
         element: <AccountsPage />,
+      },
+      {
+        path: "/transactions",
+        element: <TransactionsPage />,
       },
     ],
   },
