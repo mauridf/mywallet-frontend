@@ -6,4 +6,11 @@ export const TransactionsService = {
     const res = await api.post("api/transactions", data);
     return res.data;
   },
+
+  getAll: async (params?: { month?: string; accountId?: string }): Promise<Transaction[]> => {
+    const res = await api.get("api/transactions", {
+      params,
+    });
+    return res.data;
+  },
 };
