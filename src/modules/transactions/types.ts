@@ -11,6 +11,7 @@ export type Transaction = {
   description: string;
   amount: number;
   type: TransactionType;
+  accountId: string;
   createdAt: string;
 };
 
