@@ -1,8 +1,10 @@
-export enum TransactionType {
-  Income = 1,
-  Expense = 2,
-  Investment = 3,
-}
+export const TransactionType = {
+  Income: 1,
+  Expense: 2,
+  Investment: 3,
+} as const;
+
+export type TransactionType = typeof TransactionType[keyof typeof TransactionType];
 
 export type Transaction = {
   id: string;

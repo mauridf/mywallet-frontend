@@ -62,28 +62,33 @@ export default function TransactionsPage() {
             onChange={(e) => setAmount(Number(e.target.value))}
           />
 
-          <select
-            className="border p-2 rounded"
-            value={type}
-            onChange={(e) => setType(Number(e.target.value) as TransactionType)}
-          >
-            <option value={1}>Receita</option>
-            <option value={2}>Despesa</option>
-            <option value={3}>Investimento</option>
-          </select>
+            <select
+                className="border p-2 rounded"
+                value={type}
+                onChange={(e) => setType(Number(e.target.value) as TransactionType)}
+                aria-label="Tipo de transação"
+                title="Tipo de transação"
+                >
+                <option value={1}>Receita</option>
+                <option value={2}>Despesa</option>
+                <option value={3}>Investimento</option>
+                </select>
 
-          <select
-            className="border p-2 rounded"
-            value={accountId}
-            onChange={(e) => setAccountId(e.target.value)}
-          >
-            <option value="">Selecione a conta</option>
-            {accounts?.map((acc) => (
-              <option key={acc.id} value={acc.id}>
-                {acc.name}
-              </option>
-            ))}
-          </select>
+                <select
+                className="border p-2 rounded"
+                value={accountId}
+                onChange={(e) => setAccountId(e.target.value)}
+                aria-label="Conta"
+                title="Conta"
+                >
+                <option value="">Selecione a conta</option>
+                {accounts?.map((acc) => (
+                    <option key={acc.id} value={acc.id}>
+                    {acc.name}
+                    </option>
+                ))}
+            </select>
+
         </div>
 
         <div className="mt-3">

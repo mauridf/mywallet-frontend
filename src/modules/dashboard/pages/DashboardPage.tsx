@@ -45,22 +45,32 @@ export default function DashboardPage() {
     <div className="space-y-4">
       {/* Filtro */}
       <Card>
-        <div className="flex gap-3 items-center">
-          <input
-            type="number"
-            value={year}
-            onChange={(e) => setYear(Number(e.target.value))}
-            className="border p-2 rounded w-28"
-          />
+        <div className="flex gap-3 items-end">
+          <div className="flex flex-col">
+            <label className="text-sm text-gray-600">Ano</label>
+            <input
+              type="number"
+              value={year}
+              onChange={(e) => setYear(Number(e.target.value))}
+              className="border p-2 rounded w-28"
+              aria-label="Ano"
+              title="Ano"
+            />
+          </div>
 
-          <input
-            type="number"
-            value={month}
-            onChange={(e) => setMonth(Number(e.target.value))}
-            className="border p-2 rounded w-20"
-            min={1}
-            max={12}
-          />
+          <div className="flex flex-col">
+            <label className="text-sm text-gray-600">Mês</label>
+            <input
+              type="number"
+              value={month}
+              onChange={(e) => setMonth(Number(e.target.value))}
+              className="border p-2 rounded w-20"
+              min={1}
+              max={12}
+              aria-label="Mês"
+              title="Mês"
+            />
+          </div>
 
           <Button onClick={() => refetch()}>Atualizar</Button>
         </div>
