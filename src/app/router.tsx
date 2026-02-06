@@ -8,6 +8,8 @@ import RegisterPage from "../modules/auth/pages/RegisterPage";
 import DashboardPage from "../modules/dashboard/pages/DashboardPage";
 import AccountsPage from "../modules/accounts/pages/AccountsPage";
 import TransactionsPage from "../modules/transactions/pages/TransactionsPage";
+import ClosingPage from "../modules/closing/pages/ClosingPage";
+
 
 
 export const router = createBrowserRouter([
@@ -36,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/transactions",
         element: <TransactionsPage />,
+      },
+      {
+        path: "/closing",
+        element: <ClosingPage />,
       },
     ],
   },
