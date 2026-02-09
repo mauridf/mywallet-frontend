@@ -31,6 +31,8 @@ export default function DashboardPage() {
 
   console.log("DASHBOARD RAW:", data);
 
+  // const trend = data && data.balance > 0 ? "up" : "down";
+
   const income = transactions?.filter(t => t.type === 1)
     .reduce((acc, t) => acc + t.amount, 0) || 0;
 
