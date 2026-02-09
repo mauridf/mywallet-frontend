@@ -7,6 +7,7 @@ import { Loading } from "../../../components/ui/Loading";
 import { ErrorState } from "../../../components/ui/ErrorState";
 import { MonthlyChart } from "../components/MonthlyChart";
 import { TransactionsService } from "../../transactions/services/transactions.service";
+import { SummaryCards } from "../components/SummaryCards";
 
 function getCurrentYearMonth() {
   const d = new Date();
@@ -95,7 +96,7 @@ export default function DashboardPage() {
       </Card>
 
       {/* Cards */}
-      <div className="grid grid-cols-4 gap-4">
+      {/* <div className="grid grid-cols-4 gap-4">
         <Card>
           <div className="text-sm text-gray-500">Receita</div>
           <div className="text-xl font-bold text-green-600">
@@ -123,7 +124,9 @@ export default function DashboardPage() {
             {data?.month}/{data?.year}
           </div>
         </Card>
-      </div>
+      </div> */}
+
+      {data && <SummaryCards data={data} />}
 
       {transactions && (
         <MonthlyChart 
