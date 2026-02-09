@@ -42,11 +42,11 @@ export default function DashboardPage() {
     queryFn: () => DashboardService.getHistory(),
   });
 
-  const history = historyRaw.map((m: MonthlyDashboard) => ({
+  const history = (historyRaw ?? []).map((m: MonthlyDashboard) => ({
     ...m,
     income: m.totalIncome,
     expense: m.totalExpense,
-  })) || [];
+  }));
   
   console.log("DASHBOARD RAW:", data);
   console.log("HISTORY:", history);
@@ -152,14 +152,15 @@ export default function DashboardPage() {
         />
       )}
 
-      {history.length > 0 && (
+      {Array.isArray(history) && history.length > 0 && (
         <CapitalCurve
-          history={history.map(h => ({
+          history={history.map((h: MonthlyDashboard) => ({
             label: `${h.month}/${h.year}`,
             balance: h.balance
           }))}
         />
       )}
+
 
       {/* Ações */}
       <div className="flex gap-3">
