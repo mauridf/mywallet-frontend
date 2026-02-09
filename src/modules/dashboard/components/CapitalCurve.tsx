@@ -1,3 +1,6 @@
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { Card } from "../../../components/ui/Card";
+
 type Props = {
   history: { label: string; balance: number }[];
 };

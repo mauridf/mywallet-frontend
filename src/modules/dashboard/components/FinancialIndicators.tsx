@@ -1,3 +1,9 @@
+import { RunwayCard } from "./RunwayCard";
+import { BurnRateCard } from "./BurnRateCard";
+import { SavingRateCard } from "./SavingRateCard";
+import { FinancialScoreCard } from "./FinancialScoreCard";
+import { HealthIndexCard } from "./HealthIndexCard";
+
 type Props = {
   income: number;
   expense: number;

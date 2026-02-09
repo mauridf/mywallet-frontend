@@ -117,37 +117,6 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      {/* Cards */}
-      {/* <div className="grid grid-cols-4 gap-4">
-        <Card>
-          <div className="text-sm text-gray-500">Receita</div>
-          <div className="text-xl font-bold text-green-600">
-            R$ {data?.totalIncome.toFixed(2)}
-          </div>
-        </Card>
-
-        <Card>
-          <div className="text-sm text-gray-500">Despesa</div>
-          <div className="text-xl font-bold text-red-600">
-            R$ {data?.totalExpense.toFixed(2)}
-          </div>
-        </Card>
-
-        <Card>
-          <div className="text-sm text-gray-500">Balanço</div>
-          <div className="text-xl font-bold">
-            R$ {data?.balance.toFixed(2)}
-          </div>
-        </Card>
-
-        <Card>
-          <div className="text-sm text-gray-500">Mês/Ano</div>
-          <div className="text-xl font-bold">
-            {data?.month}/{data?.year}
-          </div>
-        </Card>
-      </div> */}
-
       {data && <SummaryCards data={data} />}
 
       {transactions && (
@@ -180,6 +149,15 @@ export default function DashboardPage() {
           income={income}
           expense={expense}
           balance={data.balance}
+        />
+      )}
+
+      {history.length > 0 && (
+        <CapitalCurve
+          history={history.map(h => ({
+            label: `${h.month}/${h.year}`,
+            balance: h.balance
+          }))}
         />
       )}
 
