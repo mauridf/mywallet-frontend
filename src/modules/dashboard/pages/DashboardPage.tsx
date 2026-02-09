@@ -8,6 +8,13 @@ import { ErrorState } from "../../../components/ui/ErrorState";
 import { MonthlyChart } from "../components/MonthlyChart";
 import { TransactionsService } from "../../transactions/services/transactions.service";
 import { SummaryCards } from "../components/SummaryCards";
+import type { MonthlyDashboard } from "../types";
+import { HistoryTimeline } from "../components/HistoryTimeline";
+import { GrowthCompare } from "../components/GrowthCompare";
+import { TrendIndicator } from "../components/TrendIndicator";
+import { FinancialIndicators } from "../components/FinancialIndicators";
+import { ProjectionChart } from "../components/ProjectionChart";
+import { CapitalCurve } from "../components/CapitalCurve";
 
 function getCurrentYearMonth() {
   const d = new Date();
@@ -29,7 +36,20 @@ export default function DashboardPage() {
     queryFn: () => TransactionsService.getByMonth(month),
   });
 
+  
+  const { data: historyRaw } = useQuery({
+    queryKey: ["dashboard-history"],
+    queryFn: () => DashboardService.getHistory(),
+  });
+
+  const history = historyRaw.map((m: MonthlyDashboard) => ({
+    ...m,
+    income: m.totalIncome,
+    expense: m.totalExpense,
+  })) || [];
+  
   console.log("DASHBOARD RAW:", data);
+  console.log("HISTORY:", history);
 
   // const trend = data && data.balance > 0 ? "up" : "down";
 
@@ -135,6 +155,31 @@ export default function DashboardPage() {
           income={income} 
           expense={expense} 
           investment={investment} 
+        />
+      )}
+
+      {history.length > 0 && (
+        <div className="grid grid-cols-3 gap-4">
+          <HistoryTimeline history={history} />
+          <GrowthCompare history={history} />
+          <TrendIndicator history={history} />
+        </div>
+      )}
+
+      {data && transactions && (
+        <FinancialIndicators
+          income={income}
+          expense={expense}
+          investment={investment}
+          balance={data.balance}
+        />
+      )}
+
+      {data && (
+        <ProjectionChart
+          income={income}
+          expense={expense}
+          balance={data.balance}
         />
       )}
 

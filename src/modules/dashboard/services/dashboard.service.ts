@@ -9,6 +9,11 @@ export const DashboardService = {
     return res.data;
   },
 
+  getHistory: async () => {
+    const res = await api.get("api/dashboard/history");
+    return res.data;
+  },
+
   exportCSV: async (months = 6) => {
     const res = await api.get("api/dashboard/export/csv", {
       params: { months },

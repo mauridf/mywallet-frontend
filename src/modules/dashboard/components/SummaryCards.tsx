@@ -1,6 +1,7 @@
 import { DollarSign, TrendingUp, TrendingDown, Wallet } from "lucide-react";
 import { Card } from "../../../components/ui/Card";
-import { MonthlyDashboard } from "../types";
+import type { MonthlyDashboard } from "../types";
+
 
 type Props = {
   data: MonthlyDashboard;
