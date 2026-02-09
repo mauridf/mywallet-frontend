@@ -5,6 +5,8 @@ import { Card } from "../../../components/ui/Card";
 import { Button } from "../../../components/ui/Button";
 import { Loading } from "../../../components/ui/Loading";
 import { ErrorState } from "../../../components/ui/ErrorState";
+import { MonthlyChart } from "../components/MonthlyChart";
+import { TransactionsService } from "../../transactions/services/transactions.service";
 
 function getCurrentYearMonth() {
   const d = new Date();
@@ -21,8 +23,22 @@ export default function DashboardPage() {
     queryFn: () => DashboardService.getMonthly(year, month),
   });
 
+  const { data: transactions } = useQuery({
+    queryKey: ["transactions", month],
+    queryFn: () => TransactionsService.getByMonth(month),
+  });
+
   console.log("DASHBOARD RAW:", data);
-  
+
+  const income = transactions?.filter(t => t.type === 1)
+    .reduce((acc, t) => acc + t.amount, 0) || 0;
+
+  const expense = transactions?.filter(t => t.type === 2)
+    .reduce((acc, t) => acc + t.amount, 0) || 0;
+
+  const investment = transactions?.filter(t => t.type === 3)
+    .reduce((acc, t) => acc + t.amount, 0) || 0;
+
   const closeMonthMutation = useMutation({
     mutationFn: () => DashboardService.closeMonth(year, month),
     onSuccess: () => refetch(),
@@ -108,6 +124,14 @@ export default function DashboardPage() {
           </div>
         </Card>
       </div>
+
+      {transactions && (
+        <MonthlyChart 
+          income={income} 
+          expense={expense} 
+          investment={investment} 
+        />
+      )}
 
       {/* Ações */}
       <div className="flex gap-3">

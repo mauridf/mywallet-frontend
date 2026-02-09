@@ -13,4 +13,9 @@ export const TransactionsService = {
     });
     return res.data;
   },
+
+  getByMonth: async (month: number) => {
+    const res = await api.get<Transaction[]>(`/api/transactions?month=${month}`);
+    return res.data;
+  },
 };
