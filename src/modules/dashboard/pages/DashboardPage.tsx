@@ -21,6 +21,8 @@ export default function DashboardPage() {
     queryFn: () => DashboardService.getMonthly(year, month),
   });
 
+  console.log("DASHBOARD RAW:", data);
+  
   const closeMonthMutation = useMutation({
     mutationFn: () => DashboardService.closeMonth(year, month),
     onSuccess: () => refetch(),

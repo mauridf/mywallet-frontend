@@ -3,9 +3,9 @@ import type { MonthlyDashboard } from "../types";
 
 export const DashboardService = {
   getMonthly: async (year: number, month: number): Promise<MonthlyDashboard> => {
-    const res = await api.get("api/dashboard/monthly", {
-      params: { year, month },
-    });
+    const res = await api.get<MonthlyDashboard>(
+      `/api/dashboard/monthly?year=${year}&month=${month}`
+    );
     return res.data;
   },
 
